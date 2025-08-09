@@ -1,0 +1,67 @@
+services:
+  backend:
+    build: ./backend
+    container_name: backend_service_dev
+    # working_dir: /app
+    command: npm run start
+    environment:
+      - PORT=4000
+      - NODE_ENV=development
+      - TEST=RED_LIGHT
+    env_file:
+      - ./backend/.env
+    networks:
+      - nsvenet
+    develop:
+      watch:
+        - path: ./backend/package.json
+          action: rebuild
+        - path: ./backend/package-lock.json
+          action: rebuild
+        - path: ./backend
+          target: /app
+          action: sync+restart
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: frontend_service
+    # ports:
+    #   - 5173:5173
+    networks:
+      - nsvenet
+    develop:
+      watch:
+        - path: ./frontend/package.json
+          action: rebuild
+        - path: ./frontend/package-lock.json
+          action: rebuild
+        - path: ./frontend
+          target: /app
+          action: sync+restart
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile.dev
+    container_name: web_service
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web/dev/logs:/var/log/nginx
+    networks:
+      - nsvenet
+    depends_on:
+      - backend
+      - frontend
+    develop:
+      watch:
+        - path: ./web/dev/nginx.conf
+          action: sync+restart
+          target: /etc/nginx/nginx.conf
+networks:
+  nsvenet:
+    driver: bridge
+volumes:
+  nginx-prod-logs:
+    driver: local
+    
