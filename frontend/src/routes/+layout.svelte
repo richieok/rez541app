@@ -1,5 +1,9 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
+	import '$lib/styles/reset.css';
+	import '$lib/styles/global.css';
+	import Nav from './Nav.svelte';
+	import Footer from './Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -8,4 +12,27 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-{@render children?.()}
+<Nav />
+
+<main>
+	{@render children?.()}
+</main>
+
+<Footer />
+
+<style>
+	main {
+		padding: 0 1em;
+		animation: fade-in .5s forwards;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
+		}
+	}
+</style>
