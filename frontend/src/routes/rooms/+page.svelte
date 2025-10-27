@@ -42,37 +42,28 @@
 </script>
 
 <svelte:head><title>Bookings</title></svelte:head>
-<div class="room-wrapper">
+<div class="room-wrapper fade-in">
     {#each bookingData as aptInfo}
-        <RoomCards name={aptInfo.name} images={aptInfo.images} price={aptInfo.price} id={aptInfo.id}/>
+        <RoomCards
+            name={aptInfo.name}
+            images={aptInfo.images}
+            price={aptInfo.price}
+            id={aptInfo.id}
+        />
     {/each}
 </div>
 
 <style>
     .room-wrapper {
         --pg-height: clamp(500px, calc(100vh - var(--header-height)), 800px);
-        --gap: 1rem;
-        display: flex;
-        flex-wrap: wrap;
-        padding: var(--gap) 0;
         min-height: var(--pg-height);
-        justify-content: center;
-        /* place-content: center; */
-        container-type: inline-size;
+        --gap: 1rem;
         gap: var(--gap);
-    }
-
-    .room-card {
-        grid-template-rows: auto auto 1fr;
-        width: 350px;
-        height: 480px;
-        background-color: lightgray;
-
-        > h1,
-        h2,
-        h3,
-        p {
-            padding: 0 1rem;
-        }
+        padding: var(--gap) 0;
+        container-type: inline-size;
+        
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 350px);
+        justify-content: center; /* centers the grid */
     }
 </style>

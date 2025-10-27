@@ -21,18 +21,9 @@
 <Footer />
 
 <style>
-	main {
+	/* main {
 		padding: 0 1em;
 		animation: fade-in .5s forwards;
-	}
+	} */
 
-	@keyframes fade-in {
-		from {
-			opacity: 0;
-		}
-
-		to {
-			opacity: 1;
-		}
-	}
 </style>

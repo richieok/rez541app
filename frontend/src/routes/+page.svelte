@@ -1,21 +1,24 @@
 <script>
     import Hero from "./Hero.svelte";
+
+    let { data } = $props()
+    console.log(data)
 </script>
 
 <svelte:head><title>Home</title></svelte:head>
 
-<Hero />
+<Hero src={data.surls[0]}/>
 <div class="section">
     <div class="x-layout">
         <div class="img-frame pos-1">
             <img
-                src="https://images.unsplash.com/photo-1664186771971-2eaca0576c6c?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="{data.surls[1]}"
                 alt=""
             />
         </div>
         <div class="img-frame pos-3">
             <img
-                src="https://images.unsplash.com/photo-1625244695851-1fc873f942bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="{data.surls[2]}"
                 alt=""
             />
         </div>

@@ -3,6 +3,7 @@ import { error } from '@sveltejs/kit';
 const rooms = new Map([
     ["1", {
         name: "Superior Room",
+        roomId: 1,
         price: "N100,000",
         images: [
             "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -15,6 +16,7 @@ const rooms = new Map([
         ]
     }], ["2", {
         name: "2 bedroom suite",
+        roomId: 2,
         price: "N150,000",
         images: [
             "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -28,6 +30,7 @@ const rooms = new Map([
         ]
     }], ["3", {
         name: "3 bedroom suite",
+        roomId: 3,
         price: "N200,000",
         images: [
             "https://images.unsplash.com/photo-1611048267451-e6ed903d4a38?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -41,6 +44,7 @@ const rooms = new Map([
         ]
     }], ["4", {
         name: "4 bedroom Flat",
+        roomId: 4,
         price: "N300,000",
         images: [],
         features: [

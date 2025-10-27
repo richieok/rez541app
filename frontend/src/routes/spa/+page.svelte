@@ -1,4 +1,4 @@
-<div class="spa-wrapper">
+<div class="spa-wrapper fade-in">
     <h1>SPA</h1>
 </div>
 

@@ -2,6 +2,8 @@ import express from 'express';
 import { createServer } from 'node:http'
 import multer from 'multer'
 import { getParameters } from './aws.js';
+import { publicSignUrl, publicSignUrls, signUrl } from './myS3.js';
+import { createBooking } from './booking.js';
 
 if (process.env.CLOUD === 'aws') {
     getParameters(process.env['SSM_PARAMETER_PATH']).then(() => {
@@ -20,7 +22,7 @@ if (process.env.CLOUD === 'aws') {
 async function startservice() {
     //Import authentication modules here
     // e.g import { authenticateToken } from './auth.js';
-    
+
 
     const app = express();
     const server = createServer(app);
@@ -29,6 +31,7 @@ async function startservice() {
     app.use(express.urlencoded({ extended: true }))
     app.use(express.json());
 
+
     app.get('/api', (req, res) => {
         res.json({ "message": "/api endpoint", "status": "true" })
     });
@@ -36,6 +39,12 @@ async function startservice() {
     app.get('/api/test', (req, res) => {
         res.json({ "message": "Test endpoint", "status": "true", "test": process.env.TEST || 'NOT_FOUND' });
     });
+
+    app.get('/api/img/public/filename/:filename', publicSignUrl)
+
+    app.post('/api/img/publicSign', upload.none(), publicSignUrls)
+
+    app.post("/api/booking", upload.none(), createBooking)
 
     const PORT = process.env.PORT || 4000;
 
